@@ -3,8 +3,12 @@
     <router-link to="/">Home</router-link>
     <router-link to="/guide">Guide</router-link>
 
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
+    <router-view v-slot="{ Component, route }">
+      <transition
+        name="fade"
+        :enter-active-class="route.meta.enterClass"
+        :leave-active-class="route.meta.leaveClass"
+      >
         <component :is="Component" />
       </transition>
     </router-view>
@@ -34,6 +38,10 @@ export default {
   position: relative;
 }
 
+.page {
+  position: absolute;
+  top: 30px;
+}
 a {
   font: bold;
   color: #2c3e50;
